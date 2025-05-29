@@ -1,0 +1,17 @@
+[project]
+name = "py-web-template"
+version = "0.0.1"
+description = "python3 web 项目工程模板"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "asyncmy>=0.2.10",
+    "fastapi>=0.115.12",
+    "httpx>=0.28.1",
+    "python-dotenv>=1.1.0",
+    "sqlalchemy>=2.0.41",
+    "uvicorn>=0.34.2",
+]
+[[tool.uv.index]]
+name = "ali"
+url = "http://mirrors.aliyun.com/pypi/simple/"
