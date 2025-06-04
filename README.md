@@ -9,7 +9,7 @@ python3 web 项目工程模板
 ## 依赖说明
 
 -   开发框架: [fastapi](https://fastapi.tiangolo.com/zh/#api_2)
--   ORM: [sqlmodel](https://sqlmodel.tiangolo.com/)
+-   ORM: [SQLAlchemy](https://www.sqlalchemy.org/)
 -   HTTP: [httpx](https://www.python-httpx.org/)
 -   ASGI: [uvicorn](https://www.uvicorn.org/)
 
@@ -68,6 +68,22 @@ cp .env.tmpl .env
 ```
 
 线上使用 [supervisor](https://supervisord.org/) 启动服务
+
+## 数据库同步
+
+项目已经集成数据库同步
+
+1. 检查并生成更改: `uv run alembic revision --autogenerate -m "x"`
+2. 执行更改: `uv run alembic upgrade head`
+
+正确的数据库开发步骤为：
+
+1. 修改 `helpers/mysql/models.py` 文件的表结构
+2. 检查并生成更改: `uv run alembic revision --autogenerate -m "x"`
+3. 执行更改: `uv run alembic upgrade head`
+4. 上线的时候，执行 `uv run alembic upgrade head` 同步更改
+
+> 切记在开发的时候，尽量不要直接操作数据库进行建库建表修改表结构等操作
 
 ## 代码检查
 
