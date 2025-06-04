@@ -18,7 +18,7 @@ python3 web 项目工程模板
 ### 1. 开发环境
 
 ```bash
-uv run start.py -M=development
+uv run app/start.py -M=development
 ```
 
 开发环境下，如果未指定 `--host` 参数，则默认使用 `127.0.0.1` 作为主机地址。同时开启 `reload` 模式，以便在代码更改时自动重新加载服务器。
@@ -26,7 +26,7 @@ uv run start.py -M=development
 ### 2. 生产环境
 
 ```bash
-uv run start.py
+uv run app/start.py
 ```
 
 如果未指定 `--host` 参数，则默认使用 `0.0.0.0` 作为主机地址。同时禁用 `reload` 模式
@@ -48,11 +48,12 @@ logger.exception()
 
 ## 项目结构
 
--   `start.py` - 启动文件
--   `main.py` - `Fastapi` 主文件
--   `utils` - 存放工具类
+-   `app` - 应用主文件夹
+-   `app/start.py` - 启动文件
+-   `app/main.py` - `Fastapi` 主文件
+-   `app/utils` - 存放工具类
 -   `scripts` - 存放辅助脚本文件
--   `routes` - 存放路由文件
+-   `app/routes` - 存放路由文件
 -   `run` - 存放启动脚本相关的工具
 
 ## 项目脚本
@@ -78,7 +79,7 @@ cp .env.tmpl .env
 
 正确的数据库开发步骤为：
 
-1. 修改 `helpers/mysql/models.py` 文件的表结构
+1. 修改 `app/helpers/mysql/models.py` 文件的表结构
 2. 检查并生成更改: `uv run alembic revision --autogenerate -m "x"`
 3. 执行更改: `uv run alembic upgrade head`
 4. 上线的时候，执行 `uv run alembic upgrade head` 同步更改
